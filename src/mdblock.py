@@ -1,6 +1,6 @@
 
 def markdown_to_blocks(markdown): # markdown is a string written in md
-    block_list = markdown.split("\n\n")
+    block_list = markdown.strip().split("\n\n")
     blocks = []
     for block in block_list:
         block = block.strip()

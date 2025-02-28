@@ -26,6 +26,7 @@ class TestMdtoBlock(unittest.TestCase):
 
             - This is a list
             - with items
+
         """
 
         blocks = markdown_to_blocks(md)

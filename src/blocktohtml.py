@@ -24,23 +24,27 @@ def block_to_html_node(blocktext, blocktype):
     if blocktype == "paragraph":
         node = HTMLNode("p", blocktext)
     if blocktype == "heading":
-        pass
+        count = 0
+        while count < len(blocktext) and blocktext[count] == "#":
+            count += 1
+        node = HTMLNode(f"h{count}", blocktext[count:].strip())
     if blocktype == "code":
-        node = HTMLNode("code", blocktext)
+        blocktext = "\n".join(blocktext.split("\n")[1:-1])
+        node = HTMLNode("pre", None, [HTMLNode("code", blocktext)])
     if blocktype == "quote":
         node = HTMLNode("blockquote", blocktext)
     if blocktype == "unordered_list":
-        node = HTMLNode("ul", blocktext)
+        items = blocktext.splitlines()
+        ulist = []
+        for item in items:
+            ulist.append(HTMLNode("li", item))
+        node = HTMLNode("ul", None, [ulist])
     if blocktype == "ordered_list":
-        node = HTMLNode("ol", blocktext)
+        items = blocktext.splitlines()
+        olist = []
+        for item in items:
+            olist.append(HTMLNode("li", item))
+        node = HTMLNode("ol", None, [olist])
     return node
 
-
-
-    PARAGRAPH = "paragraph"
-    HEADING = "heading"
-    CODE = "code"
-    QUOTE = "quote"
-    UNORDERED_LIST = "unordered_list"
-    ORDERED_LIST = "ordered_list"
-    
+   

@@ -27,6 +27,13 @@ Now an unordered list:
 - Necesito comprar manzanas
 - Muchas naranjas
 - Y ver el video completo de como hacer masa madre
+
+# Pasos para hacer la masa madre
+
+## Necesitamos masa sin blanquear y masa de grano entero
+
+### El equipo necesario es el que necesitamos
+
 """
         result = markdown_to_html_node(md)
         print(result)

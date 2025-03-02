@@ -7,8 +7,8 @@ def text_node_to_html_node(text_node):
     match text_node.text_type:
         case TextType.TEXT:
             if not text_node.text:
-                raise ValueError("TextNode for NORMAL must include 'value'.")
-            return LeafNode("", text_node.text, None)
+                raise ValueError("TextNode for TEXT must include 'value'.")
+            return LeafNode(None, text_node.text, None)
         case TextType.BOLD:
             if not text_node.text:
                 raise ValueError("TextNode for BOLD must include 'value'.")
@@ -71,7 +71,7 @@ def split_nodes_image(old_nodes):
         for i in range(len(image_md)):
             image_alt, image_link = image_md[i]
             img_node = TextNode(image_alt, TextType.IMAGE, image_link)
-            lines = remaining_text.split(f"![{image_alt}]({image_link})", 1)
+            lines = remaining_text.split(f"![{image_alt}]({image_link)", 1)
             if lines[0] != "":
                 new_nodes.append(TextNode(lines[0], TextType.TEXT))
             new_nodes.append(img_node)

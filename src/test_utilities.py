@@ -7,7 +7,7 @@ class TestTxtToHTML(unittest.TestCase):
     def test_text(self):
         text_node = TextNode("Hello world!", TextType.TEXT)
         html_node = text_node_to_html_node(text_node)
-        assert html_node.tag == ""
+        assert html_node.tag == None
         assert html_node.value == "Hello world!"
         #assert html_node.children == []
         # Test bold node

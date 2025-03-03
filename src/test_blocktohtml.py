@@ -22,7 +22,7 @@ This is another paragraph with _italic_ text and `code` here
                 html,
         "<div><p>This is <b>bolded</b> paragraph text in a p tag here</p><p>This is another paragraph with <i>italic</i> text and <code>code</code> here</p></div>",
         )
-        print("Lane test passed!!!")
+        #print("Lane test passed!!!")
 
     def test_codeblock(self):
         md = """
@@ -128,7 +128,7 @@ Now an unordered list:
                 html,
                 "<div><h1>Main Heading</h1><p>This is a paragraph with <b>bold</b> and <i>italic</i> text.</p><h2>Subheading</h2><ul><li>List item with code</li><li>Another item with a link</li></ul><blockquote>This is a blockquote with <b>formatting</b></blockquote></div>"
                 )
-        print("Mixed blocks passed")
+        #print("Mixed blocks passed")
 
 
     def test_code_block_with_language(self):
@@ -141,7 +141,7 @@ Now an unordered list:
         """
         node = markdown_to_html_node(md)
         html = node.to_html()
-        print(html)
+        #print(html)
 
     def test_ordered_list_with_formatting(self):
         md = """
@@ -151,4 +151,4 @@ Now an unordered list:
         """
         node = markdown_to_html_node(md)
         html = node.to_html()
-        print(html)
+        #print(html)

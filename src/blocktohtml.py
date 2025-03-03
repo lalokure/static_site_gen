@@ -34,9 +34,9 @@ def block_to_html_node(blocktext, blocktype):
         blocktext = "\n".join(blocktext.split("\n")[1:-1])
         node = ParentNode("pre", [LeafNode("code", blocktext)])
     if blocktype == "quote":
-        print(blocktext[1:].strip())
-        print("checkpoint")
-        print(text_to_children(blocktext[1:].strip()))
+        #print(blocktext[1:].strip())
+        #print("checkpoint")
+        #print(text_to_children(blocktext[1:].strip()))
         node = ParentNode("blockquote", text_to_children(blocktext[1:].strip()))
     if blocktype == "unordered_list":
         items = blocktext.splitlines()
@@ -48,13 +48,13 @@ def block_to_html_node(blocktext, blocktype):
         items = blocktext.splitlines()
         olist = []
         for item in items:
-            olist.append(ParentNode("li", text_to_children(item[1:].strip())))
+            olist.append(ParentNode("li", text_to_children(item[2:].strip())))
         node = ParentNode("ol", olist)
     return node
 
 def text_to_children(text):
     textnodes = text_to_textnodes(text)
-    print(textnodes)
+    #print(textnodes)
     htmlnodes = []
     for textnode in textnodes:
         htmlnodes.append(text_node_to_html_node(textnode))

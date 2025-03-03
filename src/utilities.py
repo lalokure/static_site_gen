@@ -38,14 +38,16 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
     for old_node in old_nodes:
         if old_node.text_type != TextType.TEXT:
             new_nodes.append(old_node)
+            continue
+
+        lines = old_node.text.split(delimiter)
+        if len(lines) % 2 == 0:
+            raise Exception("Invalid Markdown syntax.")
+        elif len(lines) == 1:
+            new_nodes.append(TextNode(lines[0], TextType.TEXT))
         else:
-            lines = old_node.text.split(delimiter)
-            if len(lines) % 2 == 0:
-                raise Exception("Invalid Markdown syntax.")
-            elif len(lines) == 1:
-                new_nodes.append(TextNode(lines[0], TextType.TEXT))
-            else:
-                for i in range(0, len(lines)):
+            for i in range(0, len(lines)):
+                if lines[i]:
                     if i % 2 == 0:
                         txtnode = TextNode(lines[i], TextType.TEXT)
                         new_nodes.append(txtnode)
@@ -71,7 +73,7 @@ def split_nodes_image(old_nodes):
         for i in range(len(image_md)):
             image_alt, image_link = image_md[i]
             img_node = TextNode(image_alt, TextType.IMAGE, image_link)
-            lines = remaining_text.split(f"![{image_alt}]({image_link)", 1)
+            lines = remaining_text.split(f"![{image_alt}]({image_link})", 1)
             if lines[0] != "":
                 new_nodes.append(TextNode(lines[0], TextType.TEXT))
             new_nodes.append(img_node)

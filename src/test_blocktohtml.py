@@ -119,12 +119,36 @@ Now an unordered list:
         - List item with code
         - Another item with a link
 
-        > This is a blockquote with **formatting** is the problem here?
+        > This is a blockquote with **formatting**
+        """
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        #print(html)
+        self.assertEqual(
+                html,
+                "<div><h1>Main Heading</h1><p>This is a paragraph with <b>bold</b> and <i>italic</i> text.</p><h2>Subheading</h2><ul><li>List item with code</li><li>Another item with a link</li></ul><blockquote>This is a blockquote with <b>formatting</b></blockquote></div>"
+                )
+        print("Mixed blocks passed")
+
+
+    def test_code_block_with_language(self):
+        md = """
+        ```python
+        def hello_world():
+            print("Hello, world!")
+            # This should not be _processed_ as **markdown**
+        ```
         """
         node = markdown_to_html_node(md)
         html = node.to_html()
         print(html)
-        #self.assertEqual(
-        #        html,
-        #        "<div><h1>Main Heading</h1><p>This is a paragraph with <b>bold</b> and <i>italic</i> text.</p><h2>Subheading</h2><ul><li>List item with code</li><li>Another item with a link</li></ul><blockquote>This is a blockquote with <b>formatting</b> is the problem here?</blockquote></div>"
-         #       )
+
+    def test_ordered_list_with_formatting(self):
+        md = """
+        1. First item with **bold**
+        2. Second item with _italic_
+        3. Third item with `code` and [link](https//:example.com)
+        """
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        print(html)

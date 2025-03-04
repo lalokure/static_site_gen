@@ -1,7 +1,14 @@
 import os
+import sys
 
 from generate_page import *  
 from textnode import TextType, TextNode
+
+if len(sys.argv[1]) > 1:
+    basepath = sys.argv[1]
+else:
+    basepath = "/"
+print(basepath)
 
 
 def main():
@@ -10,8 +17,8 @@ def main():
     static_to_public()
     md_path = "/Users/lalobec/workspace/github.com/lalokure/static_site_gen/content"
     template_path ="/Users/lalobec/workspace/github.com/lalokure/static_site_gen/template.html"
-    dest_path = "/Users/lalobec/workspace/github.com/lalokure/static_site_gen/public"
-    generate_pages_recursive(md_path, template_path, dest_path)
+    dest_path = "/Users/lalobec/workspace/github.com/lalokure/static_site_gen/docs"
+    generate_pages_recursive(os.path.join(basepath, md_path), template_path, dest_path)
 
 
 def static_to_public():

@@ -2,7 +2,9 @@ import os
 import sys
 
 from generate_page import *  
-from textnode import TextType, TextNode
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
+print(base_dir)
 
 if len(sys.argv) > 1:
     basepath = sys.argv[1]

@@ -35,14 +35,14 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, bas
             html = node.to_html()
             title = extract_title(md_content)
             full_html = template_content.replace("{{ Title }}", title).replace("{{ Content }}", html)
-            real_html = full_html.replace('href="/', f'href="{basepath}"').replace('src="/', f'src="{basepath}"')
+            real_html = full_html.replace('href="/', f'href="{basepath}').replace('src="/', f'src="{basepath}')
             with open(f"{dest_dir_path}/{content.replace(".md", ".html")}", "w") as file:
                 file.write(real_html)
             continue
 
         new_dest_path = os.path.join(dest_dir_path, content)
         os.makedirs(new_dest_path, exist_ok = True)
-        generate_pages_recursive(file_path, template_path, new_dest_path)
+        generate_pages_recursive(file_path, template_path, new_dest_path, basepath)
 
 
 def copy_files_and_directories(current_path, target_path):

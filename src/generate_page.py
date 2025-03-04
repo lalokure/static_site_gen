@@ -22,7 +22,7 @@ def generate_page(from_path, template_path, dest_path):
         file.write(full_html)
 """
 
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath="/"):
 
     template_content = open(template_path).read()
 
@@ -35,7 +35,7 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
             html = node.to_html()
             title = extract_title(md_content)
             full_html = template_content.replace("{{ Title }}", title).replace("{{ Content }}", html)
-            real_html = full_html.replace('href="/', 'href="{BASEPATH}"').replace('src="/', 'src="{BASEPATH}"')
+            real_html = full_html.replace('href="/', 'href="{basepath}"').replace('src="/', 'src="{basepath}"')
             with open(f"{dest_dir_path}/{content.replace(".md", ".html")}", "w") as file:
                 file.write(full_html)
             continue

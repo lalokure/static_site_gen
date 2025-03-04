@@ -37,7 +37,7 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, bas
             full_html = template_content.replace("{{ Title }}", title).replace("{{ Content }}", html)
             real_html = full_html.replace('href="/', 'href="{basepath}"').replace('src="/', 'src="{basepath}"')
             with open(f"{dest_dir_path}/{content.replace(".md", ".html")}", "w") as file:
-                file.write(full_html)
+                file.write(real_html)
             continue
 
         new_dest_path = os.path.join(dest_dir_path, content)

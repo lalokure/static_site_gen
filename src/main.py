@@ -18,7 +18,7 @@ def main():
     md_path = "/Users/lalobec/workspace/github.com/lalokure/static_site_gen/content"
     template_path ="/Users/lalobec/workspace/github.com/lalokure/static_site_gen/template.html"
     dest_path = "/Users/lalobec/workspace/github.com/lalokure/static_site_gen/docs"
-    generate_pages_recursive(md_path, template_path, dest_path)
+    generate_pages_recursive(md_path, template_path, dest_path, basepath)
 
 
 def static_to_docs():
@@ -27,8 +27,6 @@ def static_to_docs():
     shutil.rmtree(public_path, ignore_errors = True)
     os.mkdir(public_path)
     copy_files_and_directories(static_path, public_path)
-
-
 
 if __name__ == "__main__":
     main()

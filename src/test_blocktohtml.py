@@ -152,3 +152,21 @@ Now an unordered list:
         node = markdown_to_html_node(md)
         html = node.to_html()
         #print(html)
+
+
+    def test_multiline_quote(self):
+        md = """
+        # Main Heading
+
+        > This is a blockquote with more than
+        > one line. Make it
+        > three instead of two.
+
+        """
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        #print(html)
+        #self.assertEqual(
+        #        html,
+        #        "<div><h1>Main Heading</h1><blockquote>This is a blockquote with formatting</blockquote></div>"
+         #       )

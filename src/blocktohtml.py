@@ -34,10 +34,14 @@ def block_to_html_node(blocktext, blocktype):
         blocktext = "\n".join(blocktext.split("\n")[1:-1])
         node = ParentNode("pre", [LeafNode("code", blocktext)])
     if blocktype == "quote":
-        #print(blocktext[1:].strip())
-        #print("checkpoint")
-        #print(text_to_children(blocktext[1:].strip()))
-        node = ParentNode("blockquote", text_to_children(blocktext[1:].strip()))
+        quote_text = ""
+        lines = blocktext.splitlines()
+        for line in lines:
+            if line.startswith("> "):
+                quote_text += line[1:]
+            else:
+                pass
+        node = ParentNode("blockquote", text_to_children(quote_text.strip()))
     if blocktype == "unordered_list":
         items = blocktext.splitlines()
         ulist = []

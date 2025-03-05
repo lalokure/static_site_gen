@@ -22,7 +22,7 @@ def generate_page(from_path, template_path, dest_path):
         file.write(full_html)
 """
 
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath="/"):
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
 
     template_content = open(template_path).read()
 

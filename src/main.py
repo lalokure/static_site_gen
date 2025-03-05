@@ -28,7 +28,7 @@ def static_to_docs():
     public_path = os.path.join(base_dir, "..", "docs", "static")
     print(f"Copying from {static_path} to {public_path}")
     #shutil.rmtree(public_path, ignore_errors = True)
-    os.mkdir(public_path)
+    os.makedirs(public_path, exist_ok = True)
     copy_files_and_directories(static_path, public_path)
 
 if __name__ == "__main__":
